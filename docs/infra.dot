@@ -1,0 +1,86 @@
+digraph INFRA {
+  node [ color = "black", fillcolor = "#E6E6E6", height =1, style = "filled,bold,rounded", fontname = "Arial" ];
+  "mlr-dev-fe-dpl" [ label = "mlr-dev-fe-dpl
+(apps/v1/Deployment)", shape =rectangle, fillcolor = "#B7E0FF" ];
+  "mlr-dev-be-dpl-nod" [ label = "mlr-dev-be-dpl-nod
+(apps/v1/Deployment)", shape =rectangle, fillcolor = "#B7E0FF" ];
+  "mlr-dev-be-dpl-fap" [ label = "mlr-dev-be-dpl-fap
+(apps/v1/Deployment)", shape =rectangle, fillcolor = "#B7E0FF" ];
+  "mlr-dev-be-dpl-ocr" [ label = "mlr-dev-be-dpl-ocr
+(apps/v1/Deployment)", shape =rectangle, fillcolor = "#B7E0FF" ];
+  "mlr-dev-db-sts" [ label = "mlr-dev-db-sts
+(apps/v1/StatefulSet)", shape =cylinder, fillcolor = "#FFCFB3" ];
+  "mlr-dev-rds-sts" [ label = "mlr-dev-rds-sts
+(apps/v1/StatefulSet)", shape =cylinder, fillcolor = "#FFCFB3" ];
+  "mlr-dev-rds-dpl-snt" [ label = "mlr-dev-rds-dpl-snt
+(apps/v1/Deployment)", shape =rectangle, fillcolor = "#B7E0FF" ];
+  "mlr-dev-fe-svc" [ label = "mlr-dev-fe-svc
+(v1/Service)" ];
+  "mlr-dev-be-svc-nod" [ label = "mlr-dev-be-svc-nod
+(v1/Service)" ];
+  "mlr-dev-be-svc-fap" [ label = "mlr-dev-be-svc-fap
+(v1/Service)" ];
+  "mlr-dev-be-svc-ocr" [ label = "mlr-dev-be-svc-ocr
+(v1/Service)" ];
+  "mlr-dev-db-svc" [ label = "mlr-dev-db-svc
+(v1/Service)" ];
+  "mlr-dev-db-svc-fst" [ label = "mlr-dev-db-svc-fst
+(v1/Service)" ];
+  "mlr-dev-rds-svc" [ label = "mlr-dev-rds-svc
+(v1/Service)" ];
+  "mlr-dev-fe-ing" [ label = "mlr-dev-fe-ing
+(networking.k8s.io/v1/Ingress)" ];
+  "mlr-dev-be-ing" [ label = "mlr-dev-be-ing
+(networking.k8s.io/v1/Ingress)" ];
+  "mlr-dev-fe-np" [ label = "mlr-dev-fe-np
+(networking.k8s.io/v1/NetworkPolicy)" ];
+  "mlr-dev-be-np" [ label = "mlr-dev-be-np
+(networking.k8s.io/v1/NetworkPolicy)" ];
+  "mlr-dev-db-np" [ label = "mlr-dev-db-np
+(networking.k8s.io/v1/NetworkPolicy)" ];
+  "mlr-dev-rds-np" [ label = "mlr-dev-rds-np
+(networking.k8s.io/v1/NetworkPolicy)" ];
+  "mlr-dev-fe-rq" [ label = "mlr-dev-fe-rq
+(v1/ResourceQuota)", shape =rectangle ];
+  "mlr-dev-be-rq" [ label = "mlr-dev-be-rq
+(v1/ResourceQuota)", shape =rectangle ];
+  "mlr-dev-db-rq" [ label = "mlr-dev-db-rq
+(v1/ResourceQuota)", shape =rectangle ];
+  "mlr-dev-rds-rq" [ label = "mlr-dev-rds-rq
+(v1/ResourceQuota)", shape =rectangle ];
+  "mlr-dev-fe-lr" [ label = "mlr-dev-fe-lr
+(v1/LimitRange)", shape =rectangle ];
+  "mlr-dev-be-lr" [ label = "mlr-dev-be-lr
+(v1/LimitRange)", shape =rectangle ];
+  "mlr-dev-db-lr" [ label = "mlr-dev-db-lr
+(v1/LimitRange)", shape =rectangle ];
+  "mlr-dev-rds-lr" [ label = "mlr-dev-rds-lr
+(v1/LimitRange)", shape =rectangle ];
+  "mlr-dev-be-sec-nod" [ label = "mlr-dev-be-sec-nod
+(v1/Secret)", shape =rectangle ];
+  "mlr-dev-be-sec-fap" [ label = "mlr-dev-be-sec-fap
+(v1/Secret)", shape =rectangle ];
+  "mlr-dev-db-sec" [ label = "mlr-dev-db-sec
+(v1/Secret)", shape =rectangle ];
+  "mlr-dev-fe-hbr-sec" [ label = "mlr-dev-fe-hbr-sec
+(v1/Secret)", shape =rectangle ];
+  "mlr-dev-be-hbr-sec" [ label = "mlr-dev-be-hbr-sec
+(v1/Secret)", shape =rectangle ];
+  "mlr-dev-db-hbr-sec" [ label = "mlr-dev-db-hbr-sec
+(v1/Secret)", shape =rectangle ];
+  "mlr-dev-tls-sec" [ label = "mlr-dev-tls-sec
+(v1/Secret)", shape =rectangle ];
+  "mlr-dev-db-pvc" [ label = "mlr-dev-db-pvc
+(v1/PersistentVolumeClaim)", shape =cylinder, fillcolor = "#FFF5CD" ];
+  "mlr-dev-fe-dpl" -> "mlr-dev-be-svc-nod";
+  "mlr-dev-be-dpl-nod" -> "mlr-dev-db-svc";
+  "mlr-dev-be-dpl-nod" -> "mlr-dev-be-sec-nod";
+  "mlr-dev-be-dpl-fap" -> "mlr-dev-rds-svc";
+  "mlr-dev-be-dpl-fap" -> "mlr-dev-be-sec-fap";
+  "mlr-dev-be-dpl-ocr" -> "mlr-dev-db-svc";
+  "mlr-dev-db-sts" -> "mlr-dev-db-sec";
+  "mlr-dev-db-sts" -> "mlr-dev-db-pvc";
+  "mlr-dev-fe-ing" -> "mlr-dev-fe-svc";
+  "mlr-dev-fe-ing" -> "mlr-dev-tls-sec";
+  "mlr-dev-be-ing" -> "mlr-dev-be-svc-nod";
+}
