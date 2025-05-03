@@ -1,0 +1,43 @@
+digraph INFRA {
+  node [ color = "black", fillcolor = "#E6E6E6", height =1, style = "filled,bold,rounded", fontname = "Arial" ];
+  "mlr-prd-be-dpl-nod" [ label = "mlr-prd-be-dpl-nod
+(AWS::EKS::Deployment)", shape =rectangle, fillcolor = "#B7E0FF" ];
+  "mlr-prd-be-dpl-fap" [ label = "mlr-prd-be-dpl-fap
+(AWS::EKS::Deployment)", shape =rectangle, fillcolor = "#B7E0FF" ];
+  "mlr-prd-be-dpl-ocr" [ label = "mlr-prd-be-dpl-ocr
+(AWS::EKS::Deployment)", shape =rectangle, fillcolor = "#B7E0FF" ];
+  "mlr-prd-db-sts" [ label = "mlr-prd-db-sts
+(AWS::EKS::StatefulSet)", shape =cylinder, fillcolor = "#FFCFB3" ];
+  "mlr-prd-fe-dpl" [ label = "mlr-prd-fe-dpl
+(AWS::EKS::Deployment)", shape =rectangle, fillcolor = "#B7E0FF" ];
+  "mlr-prd-fe-ing" [ label = "mlr-prd-fe-ing
+(AWS::EKS::Ingress)", shape =rectangle, fillcolor = "#E78F81" ];
+  "mlr-prd-be-ing" [ label = "mlr-prd-be-ing
+(AWS::EKS::Ingress)", shape =rectangle, fillcolor = "#E78F81" ];
+  "mlr-prd-fe-svc" [ label = "mlr-prd-fe-svc
+(AWS::EKS::Service)", shape =rectangle, fillcolor = "#E78F81" ];
+  "mlr-prd-be-svc-nod" [ label = "mlr-prd-be-svc-nod
+(AWS::EKS::Service)", shape =rectangle, fillcolor = "#E78F81" ];
+  "mlr-prd-be-svc-fap" [ label = "mlr-prd-be-svc-fap
+(AWS::EKS::Service)", shape =rectangle, fillcolor = "#E78F81" ];
+  "mlr-prd-be-svc-ocr" [ label = "mlr-prd-be-svc-ocr
+(AWS::EKS::Service)", shape =rectangle, fillcolor = "#E78F81" ];
+  "mlr-prd-db-svc" [ label = "mlr-prd-db-svc
+(AWS::EKS::Service)", shape =rectangle, fillcolor = "#E78F81" ];
+  "mlr-prd-db-svc-fst" [ label = "mlr-prd-db-svc-fst
+(AWS::EKS::Service)", shape =rectangle, fillcolor = "#E78F81" ];
+  "ebs-sc" [ label = "ebs-sc
+(AWS::EKS::StorageClass)", shape =cylinder, fillcolor = "#FFF5CD" ];
+  "mlr-prd-db-pvc" [ label = "mlr-prd-db-pvc
+(AWS::EKS::PersistentVolumeClaim)", shape =cylinder, fillcolor = "#FFF5CD" ];
+  "mlr-prd-rds-svc" [ label = "mlr-prd-rds-svc
+(AWS::EKS::Service)", shape =rectangle, fillcolor = "#E78F81" ];
+  "mlr-prd-rds-svc-snt" [ label = "mlr-prd-rds-svc-snt
+(AWS::EKS::Service)", shape =rectangle, fillcolor = "#E78F81" ];
+  "mlr-prd-be-dpl-nod" -> "mlr-prd-db-svc";
+  "mlr-prd-be-dpl-fap" -> "mlr-prd-rds-svc";
+  "mlr-prd-be-dpl-ocr" -> "mlr-prd-db-svc";
+  "mlr-prd-fe-ing" -> "mlr-prd-fe-svc";
+  "mlr-prd-be-ing" -> "mlr-prd-be-svc-nod";
+  "mlr-prd-db-pvc" -> "ebs-sc";
+}
